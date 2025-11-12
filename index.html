@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NGO Management System - Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --success: #2ecc71;
+            --text: #333;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --trans: all 0.3s ease;
+        }
+        
+        /* Base */
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; color: var(--text); background: #f5f5f5; padding-top: 80px; margin: 0; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        
+        /* Header */
+        header { background: var(--primary); padding: 1rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font: bold 1.8rem/1.2 sans-serif; color: white; text-decoration: none; }
+        .logo span { color: var(--secondary); }
+        nav ul { list-style: none; display: flex; padding: 0; }
+        nav li { margin-left: 1.5rem; }
+        nav a { color: white; text-decoration: none; padding: 0.5rem 0; }
+        nav a.active { color: var(--secondary); }
+
+        /* Buttons */
+        .btn { 
+            display: inline-block; 
+            background: var(--secondary); 
+            color: white; 
+            padding: 0.8rem 1.8rem; 
+            border: none; 
+            text-decoration: none; 
+            border-radius: 5px;
+            transition: var(--trans);
+        }
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .btn-outline { 
+            background: transparent; 
+            border: 2px solid var(--secondary); 
+            color: var(--secondary);
+        }
+
+        /* Hero */
+        .hero { background: linear-gradient(rgba(44,62,80,0.9), rgba(44,62,80,0.9)), url('https://www.godeepak.com/wp-content/uploads/2023/09/banner-6.jpg') center/cover; color: white; text-align: center; padding: 8rem 0; margin-top: -80px; }
+        .hero h1 { font-size: 3rem; margin: 0 0 1.5rem; }
+        .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem; }
+        .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+        /* Cards */
+        .card { 
+            background: white; 
+            border-radius: 8px; 
+            box-shadow: var(--shadow); 
+            padding: 2rem; 
+            margin: 1rem 0; 
+            transition: var(--trans);
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .card h3 { color: #2c3e50; margin: 0 0 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .mission-icon { color: var(--secondary); }
+        .vision-icon { color: #5cb5aa; }
+        
+        /* Footer */
+        footer { 
+            background: var(--primary); 
+            color: white; 
+            padding: 2rem 0; 
+            margin-top: 3rem; 
+        }
+        
+        .footer-content { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 2rem; 
+            justify-content: space-between; 
+        }
+        
+        .footer-section { 
+            flex: 1; 
+            min-width: 200px; 
+        }
+        
+        /* .footer-section h3 { 
+            color: var(--secondary); 
+            margin-bottom: 1rem; 
+        } */
+        
+        /* .footer-section ul { 
+            list-style: none; 
+            padding: 0;
+        } */
+        
+        /* .footer-section li { 
+            margin-bottom: 0.5rem; 
+        } */
+        
+        .footer-section a { 
+            color: #ecf0f1; 
+            text-decoration: none; 
+            transition: var(--trans); 
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: var(--trans);
+        }
+        
+            
+        /* Mobile Menu Button */
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header .container { 
+                flex-direction: row; 
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.5rem 1rem;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: var(--primary);
+                padding: 1rem 0;
+                transform: translateY(-150%);
+                transition: transform 0.3s ease-in-out;
+                z-index: 999;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            nav.active {
+                transform: translateY(0);
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                margin: 0;
+                padding: 0;
+            }
+
+            nav li {
+                margin: 0.8rem 0;
+                width: 100%;
+                text-align: center;
+            }
+
+            nav a {
+                display: block;
+                padding: 0.8rem 0;
+            }
+
+            nav a:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+
+            .hero { 
+                padding: 6rem 1rem; 
+                margin-top: 0;
+            }
+            
+            .hero h1 { 
+                font-size: 2.2rem; 
+                margin-top: 0;
+            }
+            
+            body { 
+                padding-top: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">Care<span>4</span>all </a>
+            <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="pages/about.html">About</a></li>
+                    <li><a href="pages/events.html">Program</a></li>
+                    <li><a href="pages/donations.html">Donate</a></li>
+                    <li><a href="pages/volunteers.html">Volunteer</a></li>
+                    <li><a href="pages/contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Welcome to <i>Care4all</i> NGO</h1>
+            <p>Empowering communities through collaboration, support, and sustainable development initiatives.</p>
+            <div class="mt-2">
+                <a href="pages/donations.html" class="btn">Donate Now</a>
+                <a href="pages/volunteers.html" class="btn btn-outline">Become a Volunteer</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <br>
+        <br>
+        <h2 class="text-center">About Our NGO</h2>
+            <p class="text-center mt-1">We are a non-profit organization dedicated to making a positive impact in our community through various initiatives and programs.</p>
+   
+        <!-- Mission & Vision -->
+        <section class="mt-3">
+            <div class="card">
+                <div class="card-content">
+                    <h3><i class="fas fa-bullseye mission-icon"></i>Our Mission</h3>
+                    <p>To empower underprivileged communities through sustainable development, providing quality education, healthcare, and creating lasting positive change in people's lives.</p>
+                </div>
+            </div>
+            
+            <div class="card mt-2">
+                <div class="card-content">
+                    <h3><i class="fas fa-eye vision-icon"></i>Our Vision</h3>
+                    <p>To create a world where every individual has equal opportunities to thrive, with access to basic necessities, quality education, and a supportive community that fosters growth and development.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Activities -->
+        <section class="mt-3">
+            <h2 class="text-center">Recent Activities</h2>
+            <div class="cards mt-2">
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Community Cleanup Drive</h3>
+                        <p><i class="far fa-calendar-alt"></i> October 15, 2023</p>
+                        <p>Join us for a day of cleaning up our local parks and neighborhoods.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Education Workshop</h3>
+                        <p><i class="far fa-calendar-alt"></i> November 5, 2023</p>
+                        <p>Free workshops for children focusing on STEM education.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Health Camp</h3>
+                        <p><i class="far fa-calendar-alt"></i> November 20, 2023</p>
+                        <p>Free health checkups and medical camp in rural areas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>Care4all is dedicated to creating sustainable change in communities through education, healthcare, and environmental initiatives.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="pages/about.html">About Us</a></li>
+                        <li><a href="pages/events.html">Program</a></li>
+                        <!-- <li><a href="pages/donations.html">Donate</a></li> -->
+                        <!-- <li><a href="pages/volunteers.html">Volunteer</a></li>
+                        <li><a href="pages/contact.html">Contact</a></li> -->
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Manas Street, lucknow, India</p>
+                    <p><i class="fas fa-phone"></i> +9838087809</p>
+                    <p><i class="fas fa-envelope"></i> info@care4all.org</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.getElementById('menuBtn');
+            const nav = document.getElementById('mainNav');
+            
+            menuBtn.addEventListener('click', function() {
+                nav.classList.toggle('active');
+                const icon = this.querySelector('i');
+                if (nav.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            // Close menu when clicking on a nav link
+            document.querySelectorAll('#mainNav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    nav.classList.remove('active');
+                    const icon = menuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donations - Care4All</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding-top: 80px;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        header {
+            background: #2c3e50;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font: bold 1.8rem/1.2 sans-serif;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: #3498db;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+        
+        nav li {
+            margin-left: 1.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 0;
+        }
+        
+        nav a.active {
+            color: #3498db;
+        }
+
+        /* ===== FORMS ===== */
+        .donation-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+                
+        /* ===== RESPONSIVE ===== */
+        /* Mobile Menu Button */
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            header .container { 
+                padding: 0.5rem 1rem;
+                position: relative;
+                z-index: 1000;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: #2c3e50;
+                padding: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-in-out;
+                z-index: 998;
+            }
+            
+            nav.active {
+                max-height: 500px;
+                padding: 1rem 0;
+            }
+            
+            nav ul {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            
+            nav li {
+                margin: 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            nav a {
+                display: block;
+                padding: 0.8rem 1rem;
+            }
+
+            nav a:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .donation-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+            
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            
+            body {
+                padding-top: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <a href="../index.html" class="logo">Care<span>4</span>all</a>
+            <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="events.html">Program</a></li>
+                    <li><a href="donations.html" class="active">Donate</a></li>
+                    <li><a href="volunteers.html">Volunteer</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <br>
+        <h1 class="mt-2">Record new Donations</h1>
+        
+        
+         <div id="alert-message" class="alert"></div>
+        <!-- Add Donation Form -->
+        <section class="donation-form">
+            <!-- <h2>Record New Donation</h2> -->
+            <form action="https://sheetdb.io/api/v1/vkbvx001962mb" method="POST" id="donationForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="donorName">Donor Name *</label>
+                        <input type="text" name="data[Donor Name]" id="donorName" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="donorEmail">Email</label>
+                        <input type="email" name="data[Email]" id="donorEmail" class="form-control">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="amount">Amount (₹) *</label>
+                        <input type="number" name="data[Amount]" id="amount" class="form-control" min="1" step="0.01" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="paymentMethod">Payment Method *</label>
+                        <select name="data[Payment Method]" id="paymentMethod" class="form-control" required>
+                            <option value="">Select Payment Method</option>
+                            <option value="Credit Card">Credit Card</option>
+                            <option value="Debit Card">Debit Card</option>
+                            <option value="UPI">UPI</option>
+                            <option value="Net Banking">Net Banking</option>
+                            <option value="PayPal">PayPal</option>
+                            <option value="Cash">Cash</option>
+                            <option value="Check">Check</option>
+                            <option value="Bank Transfer">Bank Transfer</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="donationDate">Donation Date *</label>
+                        <input type="date" name="data[Donation Date]" id="donationDate" class="form-control" required>
+                    </div>
+                    
+                </div>
+                
+                <div class="form-group">
+                    <label for="notes">Notes</label>
+                    <textarea name="data[Notes]" id="notes" class="form-control" rows="2" placeholder="e.g., Education Fund, COVID Relief"></textarea>
+                </div>
+                                
+                <div class="form-group" style="margin-top: 1.5rem;">
+                    <button type="submit" class="btn" style="background: #3498db; color: white; border: none; padding: 0.8rem 2rem; border-radius: 4px; cursor: pointer; font-size: 1rem; transition: background 0.3s ease; width: auto; display: inline-block;">
+                        Record Donation
+                    </button>
+                </div>
+            </form>
+        </section>
+        
+       
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('donationForm');
+            const alertDiv = document.getElementById('alert-message');
+            
+            // Add some basic styles to the alert div if not already present
+            alertDiv.style.minHeight = '50px';
+            
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                try {
+                    // Show loading state
+                    const submitButton = form.querySelector('button[type="submit"]');
+                    const originalButtonText = submitButton.textContent;
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Submitting...';
+                    
+                    // Clear any previous messages
+                    alertDiv.innerHTML = '';
+                    
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: new URLSearchParams(new FormData(form)).toString()
+                    });
+                    
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    
+                    const data = await response.json();
+                    
+                    // Show success message
+                    const donorName = document.getElementById('donorName').value;
+                    alertDiv.innerHTML = `
+                        <div style="background-color: #d4edda; color: #155724; padding: 15px; margin: 20px 0; border: 1px solid #c3e6cb; border-radius: 4px;">
+                            <i class="fas fa-check-circle"></i> Thank you, ${donorName || 'valued donor'}! Your donation has been submitted successfully.
+                        </div>
+                    `;
+                    
+                    // Reset form
+                    form.reset();
+                    
+                    // Scroll to the success message
+                    window.scrollTo({
+                        top: alertDiv.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                } catch (error) {
+                    // Show error message
+                    alertDiv.innerHTML = `
+                        <div style="background-color: #f8d7da; color: #721c24; padding: 15px; margin: 20px 0; border: 1px solid #f5c6cb; border-radius: 4px;">
+                            <i class="fas fa-exclamation-circle"></i> There was an error submitting your application. Please try again later.
+                        </div>
+                    `;
+                    console.error('Error:', error);
+                } finally {
+                    // Re-enable the submit button
+                    const submitButton = form.querySelector('button[type="submit"]');
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Record Donation';
+                }
+            });
+        });
+    </script>
+
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.getElementById('menuBtn');
+            const nav = document.getElementById('mainNav');
+            
+            if (menuBtn && nav) {
+                menuBtn.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                    const icon = this.querySelector('i');
+                    if (nav.classList.contains('active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+
+                // Close menu when clicking on a nav link
+                document.querySelectorAll('#mainNav a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        nav.classList.remove('active');
+                        const icon = menuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

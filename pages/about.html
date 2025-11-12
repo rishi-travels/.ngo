@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Care4All</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== GLOBAL STYLES ===== */
+        :root {
+            --primary: #2c3e50; 
+            --secondary: #3498db;
+            --text: #333;
+        }
+        
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        }
+        
+        body { 
+            line-height: 1.6; 
+            color: var(--text); 
+            background: #f5f5f5; 
+            padding-top: 80px;
+        }
+        
+        .container { 
+            width: 90%; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 15px; 
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        header { 
+            background: var(--primary); 
+            color: white; 
+            padding: 1rem 0; 
+            box-shadow: var(--shadow); 
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        header .container { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        
+        .logo { 
+            font: bold 1.8rem/1.2 sans-serif; 
+            color: white; 
+            text-decoration: none; 
+        }
+        
+        .logo span { 
+            color: var(--secondary); 
+        }
+
+        nav ul { 
+            list-style: none; 
+            display: flex;
+        }
+        
+        nav li { 
+            margin-left: 1.5rem; 
+        }
+        
+        nav a { 
+            color: white; 
+            text-decoration: none; 
+            font-weight: 500; 
+            padding: 0.5rem 0; 
+            border-bottom: 2px solid transparent; 
+            transition: var(--trans); 
+        }
+        
+        nav a:hover, 
+        nav a.active { 
+            color: var(--secondary); 
+            border-color: var(--secondary); 
+        }
+
+        /* ===== ABOUT HERO ===== */
+        .about-hero { 
+            background: linear-gradient(rgba(44,62,80,0.9), rgba(44,62,80,0.9)), 
+                        url('https://assets.website-files.com/62ef64a9ca7d11736663c96d/64d3745a689ed2d8a64cae35_Sankara%20Eye%20Foundation_Web%20Banner_Artboard%208.jpg') center/cover; 
+            color: white; 
+            text-align: center; 
+            padding: 8rem 1rem 6rem; 
+            margin-top: -80px; /* Compensate for fixed header */
+            margin-bottom: 3rem;
+        }
+        
+        .about-hero h1 { 
+            font-size: 3rem; 
+            margin-bottom: 1rem; 
+        }
+        
+        .about-section { 
+            background: white; 
+            border-radius: 8px; 
+            padding: 2rem; 
+            margin-bottom: 2rem; 
+            box-shadow: var(--shadow); 
+        }
+
+        /* ===== MISSION & VISION ===== */
+        .mission-vision { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 2rem; 
+            margin: 3rem 0; 
+        }
+        
+        .mission, 
+        .vision { 
+            background: white; 
+            padding: 2rem; 
+            border-radius: 8px; 
+            box-shadow: var(--shadow); 
+        }
+        
+        .mission h2, 
+        .vision h2 { 
+            color: var(--primary); 
+            margin-bottom: 1rem; 
+            display: flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+        }
+        
+        .mission h2 i, 
+        .vision h2 i { 
+            color: var(--secondary); 
+        }
+
+        /* ===== TEAM SECTION ===== */
+        .team { 
+            margin: 3rem 0; 
+        }
+        
+        .team h2 { 
+            text-align: center; 
+            margin-bottom: 2rem; 
+            color: var(--primary); 
+        }
+        
+        .team-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 2rem; 
+        }
+        
+        .team-member { 
+            text-align: center; 
+            background: white; 
+            padding: 1.5rem; 
+            border-radius: 8px; 
+            box-shadow: var(--shadow); 
+            transition: var(--trans); 
+        }
+        
+        .team-member:hover { 
+            transform: translateY(-5px); 
+        }
+        
+        .team-member img { 
+            width: 150px; 
+            height: 150px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            margin-bottom: 1rem; 
+            border: 5px solid var(--light); 
+        }
+        
+        .team-member h3 { 
+            color: var(--primary); 
+            margin-bottom: 0.5rem; 
+        }
+        
+        .team-member p { 
+            color: #666; 
+            font-style: italic; 
+        }
+
+        /* ===== IMPACT SECTION ===== */
+        .impact { 
+            margin: 3rem 0; 
+        }
+        
+        .impact h2 { 
+            text-align: center; 
+            margin-bottom: 2rem; 
+            color: var(--primary); 
+        }
+        
+        .impact-stats { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 1.5rem; 
+            margin: 2rem 0; 
+        }
+        
+        .stat-item { 
+            text-align: center; 
+            padding: 1.5rem; 
+            background: white; 
+            border-radius: 8px; 
+            box-shadow: var(--shadow); 
+        }
+        
+        .stat-item i { 
+            font-size: 2.5rem; 
+            color: var(--secondary); 
+            margin-bottom: 1rem; 
+        }
+        
+        .stat-item h3 { 
+            font-size: 2rem; 
+            color: var(--primary); 
+            margin-bottom: 0.5rem; 
+        }
+        
+        .stat-item p { 
+            color: #666; 
+        }
+
+        /* ===== IMPACT LIST ===== */
+        .impact-list { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 2rem; 
+            margin: 2rem 0; 
+        }
+        
+        .impact-category { 
+            background: white; 
+            border-radius: 8px; 
+            padding: 1.5rem; 
+            box-shadow: var(--shadow); 
+            transition: var(--trans); 
+        }
+        
+        .impact-category:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+        }
+        
+        .impact-category h3 { 
+            color: var(--primary); 
+            margin-bottom: 1rem; 
+            display: flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+        }
+        
+        .impact-category h3 i { 
+            color: var(--secondary); 
+            font-size: 1.5rem; 
+        }
+        
+        .impact-category ul { 
+            list-style: none; 
+            padding-left: 1rem; 
+        }
+        
+        .impact-category li { 
+            position: relative; 
+            padding-left: 1.5rem; 
+            margin-bottom: 0.75rem; 
+            line-height: 1.5; 
+        }
+        
+        .impact-category li:before { 
+            content: '✓'; 
+            color: var(--success); 
+            font-weight: bold; 
+            position: absolute; 
+            left: 0; 
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn { 
+            display: inline-block; 
+            background: var(--secondary); 
+            color: white; 
+            padding: 0.8rem 1.8rem; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            text-decoration: none; 
+            transition: var(--trans); 
+            margin-top: 1rem;
+        }
+        
+        .btn:hover { 
+            background: #2980b9; 
+            transform: translateY(-2px); 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+        }
+
+        /* ===== FOOTER ===== */
+        footer { 
+            background: var(--primary); 
+            color: white; 
+            padding: 2rem 0; 
+            margin-top: 3rem; 
+        }
+        
+        .footer-content { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 2rem; 
+            justify-content: space-between; 
+        }
+        
+        .footer-section { 
+            flex: 1; 
+            min-width: 200px; 
+        }
+        
+        .footer-section h3 { 
+            color: var(--secondary); 
+            margin-bottom: 1rem; 
+        }
+        
+        .footer-section ul { 
+            list-style: none; 
+        }
+        
+        .footer-section li { 
+            margin-bottom: 0.5rem; 
+        }
+        
+        .footer-section a { 
+            color: #ecf0f1; 
+            text-decoration: none; 
+            transition: var(--trans); 
+        }
+        
+        .footer-section a:hover { 
+            color: var(--secondary); 
+        }
+
+        /* ===== UTILITY CLASSES ===== */
+        .text-center { 
+            text-align: center; 
+        }
+        
+        .mt-1, .mb-1, .pt-1, .pb-1 { 
+            margin: 1rem 0; 
+            padding: 1rem 0; 
+        }
+        
+        .mt-2, .mb-2 { 
+            margin: 2rem 0; 
+        }
+        
+        .mt-3, .mb-3 { 
+            margin: 3rem 0; 
+        }
+
+        /* ===== RESPONSIVE ===== */
+        /* Mobile Menu Button */
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            header .container { 
+                padding: 0.5rem 1rem;
+                position: relative;
+                z-index: 1000;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: #2c3e50;
+                padding: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-in-out;
+                z-index: 998;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            }
+            
+            nav.active {
+                max-height: 500px;
+                padding: 1rem 0;
+            }
+            
+            nav ul {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            
+            nav li {
+                margin: 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            nav a {
+                display: block;
+                padding: 0.8rem 1rem;
+                border-bottom: none;
+            }
+            
+            nav a:hover, nav a:focus {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+            
+            .about-hero h1 { 
+                font-size: 2.2rem; 
+            }
+            
+            .footer-section { 
+                flex: 100%; 
+            }
+            
+            body {
+                padding-top: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <a href="../index.html" class="logo">Care<span>4</span>all</a>
+            <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="events.html">Program</a></li>
+                    <li><a href="donations.html">Donate</a></li>
+                    <li><a href="volunteers.html">Volunteer</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>About NGO Connect</h1>
+            <p>Empowering communities, transforming lives</p>
+        </div>
+    </section>
+
+    <main class="container">
+        <!-- Our Story -->
+        <section class="about-section">
+            <h2>Our Story</h2>
+            <p>Founded in 2010, NGO Care4All has been at the forefront of community development, working tirelessly to create positive change in the lives of thousands. What started as a small initiative has grown into a movement that touches lives across multiple communities.</p>
+            <p>Our journey has been marked by challenges and triumphs, but through it all, our commitment to making a difference has remained unwavering.</p>
+        </section>
+
+
+        <!-- Our Impact -->
+        <section class="about-section">
+            <h2>Our Impact</h2>
+            <div class="impact-list">
+                <div class="impact-category">
+                    <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                    <ul>
+                        <li>Established 50+ learning centers across 5 states</li>
+                        <li>Benefiting 5,000+ children annually with quality education</li>
+                        <li>95% of students show improved academic performance</li>
+                        <li>Provided 1,000+ scholarships to underprivileged students</li>
+                    </ul>
+                </div>
+                
+                <div class="impact-category">
+                    <h3><i class="fas fa-heartbeat"></i> Healthcare</h3>
+                    <ul>
+                        <li>Provided medical care to over 10,000 individuals in rural areas</li>
+                        <li>Conducted 50+ health camps in underserved communities</li>
+                        <li>Distributed essential medicines to 2,500+ families</li>
+                        <li>Trained 200+ community health workers</li>
+                    </ul>
+                </div>
+                
+                <div class="impact-category">
+                    <h3><i class="fas fa-tree"></i> Environment</h3>
+                    <ul>
+                        <li>Planted 10,000+ trees across deforested areas</li>
+                        <li>Conducted environmental awareness programs in 20+ schools</li>
+                        <li>Established 5 community gardens in urban areas</li>
+                        <li>Reduced plastic waste by 60% in target communities</li>
+                    </ul>
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="about-section">
+            <h2 class="text-center">Meet Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://wallpapercave.com/wp/wp4056780.jpg" alt="Team Member">
+                    <h3>Mr.Sundar</h3>
+                    <p>Program lead</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://tse4.mm.bing.net/th/id/OIP.1ZmPOPIHcfHCbH-C7rULpQHaHa?cb=ucfimg2ucfimg=1&w=640&h=640&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Team Member">
+                    <h3>Khan sir</h3>
+                    <p>Founder & CEO</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://www.enterpriseitworld.com/wp-content/uploads/2022/02/Sridhar.jpg" alt="Team Member">
+                    <h3>Sridhar vembu</h3>
+                    <p>Education Lead</p>
+                </div>
+               
+            </div>
+        </section>
+
+        
+       
+       <center><a href="volunteers.html" class="btn">Join us</a></center>
+    </main>
+
+    <!-- Footer -->
+      <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>NGO Connect is dedicated to creating sustainable change in communities through education, healthcare, and environmental initiatives.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <!-- <li><a href="contact.html">Contact</a></li> -->
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Manas Street, lucknow, India</p>
+                    <p><i class="fas fa-phone"></i> +9838087809</p>
+                    <p><i class="fas fa-envelope"></i> info@care4all.org</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                
+            </div>
+            
+        </div>
+    </footer>
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.getElementById('menuBtn');
+            const nav = document.getElementById('mainNav');
+            
+            if (menuBtn && nav) {
+                menuBtn.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                    const icon = this.querySelector('i');
+                    if (nav.classList.contains('active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+
+                // Close menu when clicking on a nav link
+                document.querySelectorAll('#mainNav a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        nav.classList.remove('active');
+                        const icon = menuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
